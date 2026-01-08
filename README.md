@@ -1,113 +1,138 @@
-# Facial Recognition Classifier using VGG16 and TensorFlow (Google Colab)
+# Facial Recognition Classifier using VGG16 and TensorFlow
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Google Colab Implementation**
 
-This project demonstrates a facial recognition system built with TensorFlow and Keras using a transfer learning approach. The model leverages the power of the pre-trained VGG16 architecture to classify celebrity faces. The entire project was developed and executed in Google Colab, using a custom dataset of 6 celebrity classes, each with approximately 100 images (600 total).
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Overview
 
-Features:
+This project implements a facial recognition system using **TensorFlow** and **Keras**, leveraging **transfer learning** with the pre-trained **VGG16** architecture.
+The model is designed to classify celebrity faces and was fully developed and executed in **Google Colab**.
 
-- Runs entirely in Google Colab
-- Uses a dataset of 600 facial images (100 per celebrity)
-- Manual 70/30 train-test split
-- Preprocessing and one-hot encoding of labels
-- Transfer learning with pre-trained VGG16
-- Fine-tuning of last layers for better performance
-- Visualizations of accuracy and loss
-- Prediction on new face images
-- Model saving (`.h5` format)
+The dataset consists of **6 celebrity classes**, each containing approximately **100 images**, resulting in a total of **600 facial images**.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
+## Features
 
-Model Architecture:
+* Fully executable in Google Colab
+* Custom facial image dataset (600 images, 6 classes)
+* Manual 70/30 training and testing split
+* Image preprocessing and label one-hot encoding
+* Transfer learning using pre-trained VGG16 (ImageNet)
+* Fine-tuning of upper layers for improved performance
+* Training and validation accuracy/loss visualization
+* Prediction on unseen face images
+* Model export in `.h5` format
 
-- Base Model: VGG16 (without top layer, pretrained on ImageNet)
-- Custom Layers**:
-  - Flatten
-  - Dense(64) → BatchNorm → Dropout
-  - Dense(32) → BatchNorm
-  - Dense(16) → BatchNorm
-  - Dense(6) with `softmax` (for classification)
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Model Architecture
 
+* **Base Model:** VGG16
 
-Dataset Structure
+  * Pre-trained on ImageNet
+  * Top layers removed
+* **Custom Classification Head:**
 
-The dataset consists of approximately **6,000 face images**, with **1,000 images per celebrity**, organized into folders by class name:
+  * Flatten
+  * Dense (64) → Batch Normalization → Dropout
+  * Dense (32) → Batch Normalization
+  * Dense (16) → Batch Normalization
+  * Dense (6) with `softmax` activation
 
+---
+
+## Dataset Structure
+
+The dataset is organized into folders, where each folder name represents a class label:
+
+```text
 dataset.zip
 └── dataset/
-├── Tom Cruise/
-├── Scarlett Johansson/
-├── Will Smith/
-├── Leonardo DiCaprio/
-├── Johnny Depp/
-└── Megan Fox/
+    ├── Tom Cruise/
+    ├── Scarlett Johansson/
+    ├── Will Smith/
+    ├── Leonardo DiCaprio/
+    ├── Johnny Depp/
+    └── Megan Fox/
+```
 
-yaml
-Copy
-Edit
+* Each class contains approximately 100 images
+* Upload `dataset.zip` to Google Colab when prompted
 
-Each folder name becomes a class label. Upload the `dataset.zip` file to Colab when prompted.
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## How to Run (Google Colab)
 
+1. Upload `dataset.zip` using the Colab file upload prompt
+2. Run all notebook cells to:
 
-How to Run (in Google Colab)
+   * Extract the dataset
+   * Preprocess images
+   * Train and evaluate the model
+3. Modify the `img_path` variable to test predictions on new images
+4. Download the trained model (`vgg16_finetuned_model.h5`) if required
 
-1. Upload `dataset.zip` to Colab using the upload prompt.
-2. Run all cells to extract, preprocess, train, and evaluate the model.
-3. Modify the `img_path` at the end to predict a new face.
-4. Download the fine-tuned model (`vgg16_finetuned_model.h5`) if needed.
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Results
 
+* **Initial Training Epochs:** 2
+* **Fine-Tuning Epochs:** 5
+* **Validation Accuracy:** Approximately 85%–95% (dependent on image quality)
 
-Results:
+---
 
-- Initial Training Epochs: 2
-- Fine-Tuning Epochs: 5
-- Accuracy (sample): 85–95% on validation depending on image quality
+## Example Prediction
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-Example Prediction: python
-
+```text
 Predicted class: Leonardo DiCaprio
-🔧 Requirements
-Install packages via Colab:
-bash
-Copy
-Edit
+```
+
+---
+
+## Requirements
+
+Install dependencies in Google Colab:
+
+```bash
 pip install tensorflow pandas
+```
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
-Future Improvements:
+## Future Improvements
 
-Add data augmentation for better generalization
-Improve class balancing if needed
-Deploy using Streamlit or Flask
-Add webcam support for real-time predictions
+* Add data augmentation to improve generalization
+* Improve class balance and dataset size
+* Deploy the model using Streamlit or Flask
+* Integrate webcam support for real-time face recognition
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Files:
-facial_recognition_colab.ipynb — full Colab-compatible notebook
-vgg16_finetuned_model.h5 — saved Keras model
-README.md — project documentation
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Author:
-Omar El Gohary | Linkedin: linkedin.com/in/omarelgohary2003 
-Youssef Azmy   | Linkedin: linkedin.com/in/youssef-azmy/
+## Project Files
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* `facial_recognition_colab.ipynb` — Complete Google Colab notebook
+* `vgg16_finetuned_model.h5` — Trained Keras model
+* `README.md` — Project documentation
 
-License:
-This project is licensed under the MIT License.
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Authors : 
+Omar EL Gohary
+- **LinkedIn:** [linkedin.com/in/omarelgohary2003](https://www.linkedin.com/in/omarelgohary2003/)
+* **Email:** [omarrmgohary@gmail.com](mailto:omarrmgohary@gmail.com)
+
+Youssef Azmy
+- **LinkedIn:** [linkedin.com/in/omarelgohary2003](https://www.linkedin.com/in/youssef-azmy/)
+
+Hazem Osama
+- **LinkedIn:** [linkedin.com/in/hazem-osama25/](https://www.linkedin.com/in/hazem-osama25/)
+
+Youssef Mohamed Shaheen
+
+## License
+
+This project is licensed under the **MIT License**.
+
